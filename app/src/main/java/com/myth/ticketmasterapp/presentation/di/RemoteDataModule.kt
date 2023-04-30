@@ -8,20 +8,18 @@ import com.myth.ticketmasterapp.data.datasourceimplementation.EventRemoteDataSou
 import com.myth.ticketmasterapp.data.datasourceimplementation.SpotifyRemoteDataSourceImplementation
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class RemoteDataModule(private val apiKey: String, private val authorization: String) {
     @Singleton
     @Provides
-    fun providesEventRemoteDataSource(@Named("ticketMasterRetrofit") ticketMasterService: TicketMasterService): EventRemoteDataSource {
+    fun providesEventRemoteDataSource(ticketMasterService: TicketMasterService): EventRemoteDataSource {
         return EventRemoteDataSourceImplementation(ticketMasterService, apiKey)
     }
-
     @Singleton
     @Provides
-    fun providesSpotifyRemoteDataSource(@Named("spotifyRetrofit") spotifyService: SpotifyService): SpotifyRemoteDataSource {
-        return SpotifyRemoteDataSourceImplementation(spotifyService, authorization)
+    fun providesSpotifyRemoteDataSource(spotifyService: SpotifyService): SpotifyRemoteDataSource {
+        return SpotifyRemoteDataSourceImplementation(spotifyService,authorization)
     }
 }
