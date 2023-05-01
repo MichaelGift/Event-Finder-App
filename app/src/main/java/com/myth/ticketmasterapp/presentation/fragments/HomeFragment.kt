@@ -40,7 +40,11 @@ class HomeFragment : Fragment() {
         setUpRecyclerView()
 
         binding.btnSubmitSearchQueries.setOnClickListener {
-            eventsViewModel.getEvent().observe(
+            val keyword: String = binding.keyWordEditText.text.toString()
+            val distance: String = ""
+            val category: String = ""
+            val location: String = ""
+            eventsViewModel.getEvent(keyword, distance, category, location).observe(
                 viewLifecycleOwner
             ) { event ->
                 eventsAdapter.differ.submitList(event)

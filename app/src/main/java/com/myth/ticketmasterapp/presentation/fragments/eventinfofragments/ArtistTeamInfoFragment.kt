@@ -1,24 +1,72 @@
 package com.myth.ticketmasterapp.presentation.fragments.eventinfofragments
 
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.myth.ticketmasterapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.spotifydatamodels.SpotifyData
 import com.myth.ticketmasterapp.databinding.FragmentArtistTeamInfoBinding
+import com.myth.ticketmasterapp.presentation.EventViewModel
+import com.myth.ticketmasterapp.presentation.MainActivity
+import com.myth.ticketmasterapp.presentation.adapter.EventSpotifyArtistInfoAdapter
 
 class ArtistTeamInfoFragment() : Fragment() {
+    private lateinit var binding: FragmentArtistTeamInfoBinding
+    private lateinit var eventViewModel: EventViewModel
+    private lateinit var eventSpotifyArtistInfoAdapter: EventSpotifyArtistInfoAdapter
 
-    private lateinit var binding:FragmentArtistTeamInfoBinding
     lateinit var chosenEvent: Event
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artist_team_info, container, false)
+        binding = FragmentArtistTeamInfoBinding.inflate(
+            inflater, container, false
+        )
+        eventViewModel = (activity as MainActivity).eventViewModel
+        chosenEvent = eventViewModel.chosenEvent
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
+        eventViewModel.getSpotifyData(
+            "Bearer ${eventViewModel.accessToken}",
+            chosenEvent._embedded.attractions[0].name
+        ).observe(
+            viewLifecycleOwner
+        ) { spotifyData ->
+            eventSpotifyArtistInfoAdapter.differ.submitList(spotifyData)
+
+            if (spotifyData != null) {
+                updateUI(spotifyData)
+            }
+        }
+    }
+
+    private fun updateUI(spotifyData: List<SpotifyData>) {
+        if (spotifyData != null) {
+            if (spotifyData.isNotEmpty()) {
+                binding.noFavoriteEventTXt.visibility = View.GONE
+                binding.spotifyRecyclerView.visibility = View.VISIBLE
+            } else {
+                binding.noFavoriteEventTXt.visibility = View.VISIBLE
+                binding.spotifyRecyclerView.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        eventSpotifyArtistInfoAdapter = EventSpotifyArtistInfoAdapter()
+
+        binding.spotifyRecyclerView.apply {
+            layoutManager = LinearLayoutManager((activity as MainActivity).applicationContext)
+            adapter = eventSpotifyArtistInfoAdapter
+        }
     }
 }

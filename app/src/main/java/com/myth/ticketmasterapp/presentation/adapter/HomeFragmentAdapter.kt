@@ -39,12 +39,22 @@ class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.EventsViewH
 
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
         holder.itemBinding.eventSearchResultDateAndTime.text = currentEvent.dates.start.localDate
-        holder.itemBinding.eventSearchResultVenue.text = currentEvent._embedded.venues[0].name
 
-        val posterUrl = currentEvent.images[0].url
 
-        Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
-            .into(holder.itemBinding.eventSearchResultImage)
+        for (venue in currentEvent._embedded.venues) {
+            holder.itemBinding.eventSearchResultVenue.text = venue.name
+            break
+        }
+
+        for (posters in currentEvent.images) {
+            val posterUrl = posters.url
+            Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
+                .into(holder.itemBinding.eventSearchResultImage)
+            break
+        }
+
+
+
 
         holder.itemView.setOnClickListener {
             val direction =

@@ -21,7 +21,7 @@ android {
         buildConfigField "String", "API_KEY", "\"W7psM49cpGBx65Cj33IuuowuGYZYdZya\""
         buildConfigField "String", "BASE_URL", "\"https://app.ticketmaster.com/discovery/v2/\""
         buildConfigField "String", "SPOTIFY_BASE_URL", "\"https://api.spotify.com/v1/\""
-        buildConfigField "String", "AUTHORIZATION", "\"Bearer 7fdd006b6650427b803f093a9a32d629\""
+        buildConfigField "String", "SPOTIFY_TOKEN_ACCESS_URL", "\"https://accounts.spotify.com/api/\""
 
     }
 

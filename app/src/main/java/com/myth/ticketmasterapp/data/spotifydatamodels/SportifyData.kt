@@ -1,6 +1,6 @@
 package com.myth.ticketmasterapp.data.spotifydatamodels
 
-data class SportifyData(
+data class SpotifyData(
     val albums: Albums,
     val artists: Artists
 )

@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
-import com.myth.ticketmasterapp.presentation.EventViewModel
 
 class FavoritesFragmentAdapter : RecyclerView.Adapter<FavoritesFragmentAdapter.EventsViewHolder>() {
 
-    private lateinit var eventViewModel: EventViewModel
     class EventsViewHolder(val itemBinding: EventSearchResultsCardLayoutBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 
@@ -40,18 +38,22 @@ class FavoritesFragmentAdapter : RecyclerView.Adapter<FavoritesFragmentAdapter.E
 
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
         holder.itemBinding.eventSearchResultDateAndTime.text = currentEvent.dates.start.localDate
-        holder.itemBinding.eventSearchResultVenue.text = currentEvent._embedded.venues[0].name
+        for (venue in currentEvent._embedded.venues) {
+            holder.itemBinding.eventSearchResultVenue.text = venue.name
+            break
+        }
 
-        val posterUrl = currentEvent.images[0].url
+        for (image in currentEvent.images) {
+            val posterUrl = currentEvent.images[0].url
+            Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
+                .into(holder.itemBinding.eventSearchResultImage)
 
-        Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
-            .into(holder.itemBinding.eventSearchResultImage)
+            break
+        }
 
         holder.itemView.setOnClickListener {
             Toast.makeText(
-                holder.itemView.context,
-                "Clicked",
-                Toast.LENGTH_SHORT
+                holder.itemView.context, "Clicked", Toast.LENGTH_SHORT
             ).show()
         }
     }

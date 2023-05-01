@@ -9,5 +9,10 @@ import retrofit2.http.Query
 interface TicketMasterService {
     @GET("events")
     suspend fun getEventByName(
-        @Query("apikey") apikey: String): Response<SampleEvent>
+        @Query("apikey") apikey: String,
+        @Query("keyword") keyword: String,
+        @Query("unity") distance: String,
+        @Query("classificationName") category: String,
+        @Query("geoPoint") location: String
+    ): Response<SampleEvent>
 }

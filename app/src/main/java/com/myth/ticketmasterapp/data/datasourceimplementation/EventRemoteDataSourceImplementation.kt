@@ -9,7 +9,12 @@ class EventRemoteDataSourceImplementation(
     private val ticketMasterService: TicketMasterService,
     private val apikey: String
 ) : EventRemoteDataSource {
-    override suspend fun getEvent(): Response<SampleEvent> =
-        ticketMasterService.getEventByName(apikey)
+    override suspend fun getEvent(
+        keyword: String,
+        distance: String,
+        category: String,
+        location: String
+    ): Response<SampleEvent> =
+        ticketMasterService.getEventByName(apikey, keyword, distance, category, location)
 
 }
