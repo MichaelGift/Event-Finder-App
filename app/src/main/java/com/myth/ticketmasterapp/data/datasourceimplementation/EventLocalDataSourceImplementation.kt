@@ -1,5 +1,6 @@
 package com.myth.ticketmasterapp.data.datasourceimplementation
 
+import androidx.lifecycle.LiveData
 import com.myth.ticketmasterapp.data.datasource.EventLocalDataSource
 import com.myth.ticketmasterapp.data.db.EventDao
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
@@ -26,9 +27,5 @@ class EventLocalDataSourceImplementation(
         }
     }
 
-    override suspend fun getEventById(eventId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            eventDao.getEventById(eventId)
-        }
-    }
+    override suspend fun getEventById(eventId: String) : List<Event>? = eventDao.getEventById(eventId)
 }

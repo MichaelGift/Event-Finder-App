@@ -38,10 +38,6 @@ class EventRepositoryImplementation(
         return eventLocalDataSource.deleteEvent(event)
     }
 
-    override suspend fun getEventById(eventId: String) {
-        return eventLocalDataSource.getEventById(eventId)
-    }
-
     override suspend fun getSpotifyData(
         authorization: String,
         artistName: String
@@ -117,6 +113,19 @@ class EventRepositoryImplementation(
             return eventsList
         }
         return eventsList
+    }
+
+    override suspend fun getEventById(eventId: String): List<Event>? {
+        var matchingEvent: List<Event>? = null
+        try {
+
+            matchingEvent = eventLocalDataSource.getEventById(eventId)
+            println("Got ${matchingEvent?.size}")
+        } catch (_: java.lang.Exception) {
+        }
+
+        println("You found ${matchingEvent?.size} matching events")
+        return matchingEvent
     }
 
     private suspend fun getEventsFromCache(): List<Event>? {

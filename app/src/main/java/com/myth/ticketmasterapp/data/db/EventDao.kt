@@ -1,5 +1,6 @@
 package com.myth.ticketmasterapp.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 
@@ -16,5 +17,5 @@ interface EventDao {
     suspend fun getEvents(): List<Event>
 
     @Query("SELECT * FROM events  WHERE id = :eventId")
-    suspend fun getEventById(eventId : String): Event?
+    fun getEventById(eventId : String): List<Event>?
 }

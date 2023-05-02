@@ -16,7 +16,7 @@ class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var eventsViewModel: EventViewModel
     private lateinit var favoriteFragmentAdapter: FavoritesFragmentAdapter
-
+    private lateinit var eventsList: List<Event>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class FavoritesFragment : Fragment() {
             inflater, container, false
         )
 
-        eventsViewModel =(activity as MainActivity).eventViewModel
+        eventsViewModel = (activity as MainActivity).eventViewModel
         return binding.root
     }
 
@@ -37,33 +37,41 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        favoriteFragmentAdapter = FavoritesFragmentAdapter()
+        favoriteFragmentAdapter = FavoritesFragmentAdapter(eventsViewModel, this)
 
         binding.favoritesRecyclerView.apply {
             layoutManager = LinearLayoutManager((activity as MainActivity).applicationContext)
             adapter = favoriteFragmentAdapter
         }
 
+        getEventsList()
+    }
 
+    fun getEventsList() {
         (activity as MainActivity).let {
             eventsViewModel.getFavoriteEvents().observe(
                 viewLifecycleOwner
-            ){
-                    event->
+            ) { event ->
                 favoriteFragmentAdapter.differ.submitList(event)
+                if (event != null) {
+                    eventsList = event
+                }
                 updateUI(event)
             }
         }
     }
 
     private fun updateUI(event: List<Event>?) {
-        if (event != null){
-            if(event.isNotEmpty()){
-                binding.noFavoriteEventTXt.visibility = View.GONE
+        binding.eventResultProgressBar.visibility = View.VISIBLE
+        if (event != null) {
+            if (event.isNotEmpty()) {
+                binding.cardView2.visibility = View.GONE
                 binding.favoritesRecyclerView.visibility = View.VISIBLE
-            }else{
-                binding.noFavoriteEventTXt.visibility = View.VISIBLE
+                binding.eventResultProgressBar.visibility = View.GONE
+            } else {
+                binding.cardView2.visibility = View.VISIBLE
                 binding.favoritesRecyclerView.visibility = View.GONE
+                binding.eventResultProgressBar.visibility = View.GONE
             }
         }
     }

@@ -12,42 +12,63 @@ import com.myth.ticketmasterapp.databinding.FragmentVenuInfoBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity
 
-class VenueInfoFragment() : Fragment() {
+class VenueInfoFragment : Fragment() {
     private lateinit var binding: FragmentVenuInfoBinding
     private lateinit var chosenEvent: Event
     private lateinit var viewModel: EventViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentVenuInfoBinding.inflate(
             inflater, container, false
         )
         viewModel = (activity as MainActivity).eventViewModel
+
         chosenEvent = viewModel.chosenEvent
 
         binding.apply {
-            eventTitleTxt.text = chosenEvent._embedded.venues[0].name
-            eventStadiumNameTxt.text = chosenEvent._embedded.venues[0].name
-            eventVenueAddress.text = chosenEvent._embedded.venues[0].address.line1
-            eventVenuePhoneNumberTxt.text =
-                chosenEvent._embedded.venues[0].boxOfficeInfo.phoneNumberDetail
-            eventVenueOpenHoursTxt.text =
-                chosenEvent._embedded.venues[0].boxOfficeInfo.openHoursDetail
-            eventVenueGeneralRule.text = chosenEvent._embedded.venues[0].generalInfo.generalRule
-            eventVenueChildRuleTxt.text = chosenEvent._embedded.venues[0].generalInfo.childRule
 
-            btnShowVenueOnMaps.setOnClickListener {
-                val latitude = chosenEvent._embedded.venues[0].location.latitude
-                val longitude = chosenEvent._embedded.venues[0].location.longitude
-                val label = chosenEvent._embedded.venues[0].name
 
-                val locationUri = Uri.parse("geo:$latitude,$longitude?q=$label")
+            for (venue in chosenEvent._embedded.venues) {
+                eventTitleTxt.text = venue.name
+                eventStadiumNameTxt.text = venue.name
+                eventVenueAddress.text = venue.address.line1
 
-                val mapIntent = Intent(Intent.ACTION_VIEW, locationUri)
-                startActivity(mapIntent)
+                val venueOpenHours = venue.boxOfficeInfo?.openHoursDetail
+                if (venueOpenHours != null) {
+                    eventVenueOpenHoursTxt.text = venueOpenHours
+                }
+
+                val venuePhoneNumberDetail = venue.boxOfficeInfo?.phoneNumberDetail
+                if (venuePhoneNumberDetail != null) {
+                    eventVenuePhoneNumberTxt.text = venuePhoneNumberDetail
+                }
+
+                val venueGeneralRule = venue.generalInfo?.generalRule
+                if (venueGeneralRule != null) {
+                    eventVenueGeneralRule.text = venueGeneralRule
+                }
+                val venueChildRule = venue.generalInfo?.childRule
+                if (venueChildRule != null) {
+                    eventVenueChildRuleTxt.text = venueChildRule
+                }
+
+
+                btnShowVenueOnMaps.setOnClickListener {
+                    val latitude = venue.location.latitude
+                    val longitude = venue.location.longitude
+                    val label = venue.name
+
+                    val locationUri = Uri.parse("geo:$latitude,$longitude?q=$label")
+
+                    val mapIntent = Intent(Intent.ACTION_VIEW, locationUri)
+                    startActivity(mapIntent)
+                }
+
+                break
             }
+
         }
 
         return binding.root

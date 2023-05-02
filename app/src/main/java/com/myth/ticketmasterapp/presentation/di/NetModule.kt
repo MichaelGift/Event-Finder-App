@@ -23,15 +23,15 @@ class NetModule(
     @Named("ticketMasterRetrofit")
     fun providesRetrofit(): Retrofit {
 
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
+        /*val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-        val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+        val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()*/
 
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
-            .client(client)
+            /*.client(client)*/
             .build()
     }
 
@@ -40,15 +40,15 @@ class NetModule(
     @Named("spotifyRetrofit")
     fun providesSpotifyRetrofit(): Retrofit {
 
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
+        /*val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-        val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+        val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()*/
 
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
             .baseUrl(spotifyURl)
-            .client(client)
+            /*.client(client)*/
             .build()
     }
 

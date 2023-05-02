@@ -10,4 +10,8 @@
     <color name="ticketsAvailable">#9ef01a</color>
     <color name="ticketsUnavailable">#f2545b</color>
     <color name="ticketMasterLink">#ff03dac5</color>
+    <color name="green">#25a244</color>
+    <color name="backgroundBlack">#343a40</color>
+    <color name="textColorGray">#cccccc</color>
+    <color name="buttonClearRed">#c9184a</color>
 </resources>

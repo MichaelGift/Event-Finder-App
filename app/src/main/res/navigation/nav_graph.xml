@@ -3,39 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/landingFragment2">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.myth.ticketmasterapp.presentation.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_eventInfoFragment"
-            app:destination="@id/eventInfoFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment" />
+            android:id="@+id/action_homeFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventInfoFragment"
         android:name="com.myth.ticketmasterapp.presentation.fragments.EventInfoFragment"
         android:label="fragment_event_info"
-        tools:layout="@layout/fragment_event_info" >
-        <action
-            android:id="@+id/action_eventInfoFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        tools:layout="@layout/fragment_event_info">
         <argument
             android:name="event"
             app:argType="com.myth.ticketmasterapp.data.eventdatamodels.Event"
-            app:nullable="false"/>
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_eventInfoFragment_to_landingFragment2"
+            app:destination="@id/landingFragment2" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.myth.ticketmasterapp.presentation.fragments.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" >
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.myth.ticketmasterapp.presentation.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" />
+    <fragment
+        android:id="@+id/landingFragment2"
+        android:name="com.myth.ticketmasterapp.presentation.LandingFragment"
+        android:label="fragment_landing"
+        tools:layout="@layout/fragment_landing">
         <action
-            android:id="@+id/action_favoritesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_landingFragment2_to_eventInfoFragment"
+            app:destination="@id/eventInfoFragment" />
     </fragment>
 </navigation>

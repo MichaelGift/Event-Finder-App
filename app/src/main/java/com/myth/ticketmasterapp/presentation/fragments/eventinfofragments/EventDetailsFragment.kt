@@ -33,14 +33,32 @@ class EventDetailsFragment : Fragment() {
         binding.apply {
             eventTitleText.text = chosenEvent.name
             eventDateText.text = chosenEvent.dates.start.localDate
-            eventArtistText.text = chosenEvent._embedded.attractions[0].name
-            eventVenueTxt.text = chosenEvent._embedded.venues[0].name
-            eventGenreText.text = "${chosenEvent.classifications[0].genre.name} | " +
-                    "${chosenEvent.classifications[0].subGenre.name} | " +
-                    "${chosenEvent.classifications[0].segment.name}"
 
-            eventPriceRangeTxt.text =
-                "${chosenEvent.priceRanges[0].min} - ${chosenEvent.priceRanges[0].max}"
+            val artistName = chosenEvent._embedded.attractions?.get(0)?.name
+
+            if (artistName != null) {
+                eventArtistText.text = artistName
+            }
+
+            for (venueName in chosenEvent._embedded.venues) {
+                eventVenueTxt.text = venueName.name
+                break
+            }
+            for (classifications in chosenEvent.classifications) {
+                eventGenreText.text =
+                    "${classifications.segment.name} | ${classifications.genre.name} | ${classifications.subGenre.name}"
+                break
+            }
+
+            val priceRanges = chosenEvent?.priceRanges
+
+            if (priceRanges != null) {
+                for (prices in priceRanges) {
+                    eventPriceRangeTxt.text = "${prices.min} -${prices.max}"
+                    break
+                }
+            }
+
             eventTicketStatusTxt.text = chosenEvent.dates.status.code
 
             val seatMapUrl = chosenEvent.seatmap.staticUrl
@@ -55,7 +73,16 @@ class EventDetailsFragment : Fragment() {
             }
 
             saveEventToFavorites.setOnClickListener {
-                checkIfEventExists()
+                val eventsInfo = chosenEvent?.info?.toString()
+                if (eventsInfo != null) {
+                    checkIfEventExists()
+                } else {
+                    Toast.makeText(
+                        (activity as MainActivity).applicationContext,
+                        "This event has some null parameters, Cannot be saved",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
 
             btnShareOnFacebook.setOnClickListener {
@@ -65,6 +92,7 @@ class EventDetailsFragment : Fragment() {
                 shareOnTwitter()
             }
         }
+        println("Current event ID is${chosenEvent.id}")
         return binding.root
     }
 
@@ -85,18 +113,25 @@ class EventDetailsFragment : Fragment() {
     }
 
     private fun checkIfEventExists() {
-        /*val existingEvent = viewModel.getEventId(chosenEvent.id)
-        if (existingEvent.toString().isNotBlank()) {
-            viewModel.deleteEventFromFavorite(chosenEvent)
-        } else {
-
-        }*/
-        viewModel.saveEventToFavorite(chosenEvent)
-        Toast.makeText(
-            (activity as MainActivity).applicationContext,
-            "Added to favorites",
-            Toast.LENGTH_SHORT
-        ).show()
+        viewModel.getEventId(chosenEvent.id.trim()).observe(
+            viewLifecycleOwner
+        ) { event ->
+            if (event == null) {
+                viewModel.saveEventToFavorite(chosenEvent)
+                Toast.makeText(
+                    (activity as MainActivity).applicationContext,
+                    "Added to favorites",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                viewModel.deleteEventFromFavorite(chosenEvent)
+                Toast.makeText(
+                    (activity as MainActivity).applicationContext,
+                    "Removed From Favorites",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
 }

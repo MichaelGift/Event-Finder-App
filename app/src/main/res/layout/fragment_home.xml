@@ -3,225 +3,245 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
+    <FrameLayout
+        android:id="@+id/homeFragmentToResultFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        tools:context=".presentation.fragments.HomeFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Event Search"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            tools:context=".presentation.fragments.HomeFragment">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/backgroundBlack"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/keywordTextView"
-                    android:layout_width="106dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Keyword:"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/keyWordEditText"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/keyWordEditText"
-                    android:layout_width="226dp"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="4dp"
-                    android:elegantTextHeight="true"
-                    android:hint="Required"
-                    app:layout_constraintBottom_toBottomOf="@+id/keywordTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.893"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/keywordTextView"
-                    app:layout_constraintVertical_bias="0.48" />
+                    <TextView
+                        android:id="@+id/keywordTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="48dp"
+                        android:text="Keyword*"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.065"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/distanceTextView"
-                    android:layout_width="106dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="88dp"
-                    android:text="Distance: "
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/keyWordEditText"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <AutoCompleteTextView
+                        android:id="@+id/keyWordEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/green"
+                        android:elegantTextHeight="true"
+                        android:hint="Enter the Keyword"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/textColorGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/keywordTextView" />
 
-                <EditText
-                    android:id="@+id/distanceEditText"
-                    android:layout_width="226dp"
-                    android:layout_height="51dp"
-                    android:layout_marginTop="4dp"
-                    android:elegantTextHeight="true"
-                    app:layout_constraintBottom_toBottomOf="@+id/distanceTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.895"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/distanceTextView"
-                    app:layout_constraintVertical_bias="0.166" />
+                    <TextView
+                        android:id="@+id/distanceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="257dp"
+                        android:text="Distance (Miles)* "
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/keyWordEditText" />
 
-                <TextView
-                    android:id="@+id/categoryTextView"
-                    android:layout_width="106dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="16dp"
-                    android:text="Category:"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/eventCategoryDropdown"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/eventCategoryDropdown" />
+                    <EditText
+                        android:id="@+id/distanceEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/green"
+                        android:elegantTextHeight="true"
+                        android:inputType="number"
+                        android:text="10"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/textColorGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/distanceTextView" />
 
-                <Spinner
-                    android:id="@+id/eventCategoryDropdown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="192dp"
-                    android:layout_marginTop="16dp"
-                    android:minHeight="48dp"
-                    app:layout_constraintStart_toEndOf="@+id/categoryTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/distanceEditText" />
+                    <TextView
+                        android:id="@+id/categoryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="257dp"
+                        android:text="Category*"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/distanceEditText" />
 
-                <TextView
-                    android:id="@+id/locationTextView"
-                    android:layout_width="106dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="16dp"
-                    android:text="Location:"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/locationEditText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/locationEditText" />
+                    <Spinner
+                        android:id="@+id/eventCategoryDropdown"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/green"
+                        android:minHeight="48dp"
+                        android:popupBackground="@color/backgroundBlack"
+                        android:popupElevation="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryTextView" />
 
-                <EditText
-                    android:id="@+id/locationEditText"
-                    android:layout_width="226dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
-                    android:elegantTextHeight="true"
-                    android:hint="Required"
-                    app:layout_constraintStart_toEndOf="@+id/locationTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/eventCategoryDropdown" />
+                    <TextView
+                        android:id="@+id/locationTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Location*"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.057"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/eventCategoryDropdown" />
 
-                <Switch
-                    android:id="@+id/locationSwitch"
-                    android:layout_width="342dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:minHeight="48dp"
-                    android:text="Auto-detect my location"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationEditText"
-                    app:layout_constraintVertical_bias="0.163" />
+                    <EditText
+                        android:id="@+id/locationEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/green"
+                        android:elegantTextHeight="true"
+                        android:hint="Enter the location"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/textColorGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
 
-                <Button
-                    android:id="@+id/btnClearSearchQueries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="64dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Clear"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationSwitch"
-                    app:layout_constraintVertical_bias="0.0" />
+                    <Switch
+                        android:id="@+id/locationSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:minHeight="48dp"
+                        android:text="Auto-Detect"
+                        android:textColor="@color/textColorGray"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/locationTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/eventCategoryDropdown" />
 
-                <Button
-                    android:id="@+id/btnSubmitSearchQueries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Submit"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationSwitch"
-                    app:layout_constraintVertical_bias="0.0" />
+                    <Button
+                        android:id="@+id/btnClearSearchQueries"
+                        android:layout_width="159dp"
+                        android:layout_height="49dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:backgroundTint="@color/buttonClearRed"
+                        android:text="Clear"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/locationEditText"
+                        app:layout_constraintVertical_bias="0.0" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/btnSubmitSearchQueries"
+                        android:layout_width="152dp"
+                        android:layout_height="51dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="Submit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/locationEditText"
+                        app:layout_constraintVertical_bias="0.0" />
 
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/resultsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Results"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/resultsRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="249dp"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/resultsTextView" />
+            <TextView
+                android:id="@+id/resultsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Results"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        <ProgressBar
-            android:id="@+id/searchResultProgressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/resultsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="249dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resultsTextView" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/searchResultProgressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 </layout>

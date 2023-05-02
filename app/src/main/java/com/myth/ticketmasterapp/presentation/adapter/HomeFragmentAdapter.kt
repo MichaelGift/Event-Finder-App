@@ -1,7 +1,10 @@
 package com.myth.ticketmasterapp.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -9,12 +12,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
-import com.myth.ticketmasterapp.presentation.fragments.HomeFragmentDirections
+import com.myth.ticketmasterapp.presentation.EventViewModel
+import com.myth.ticketmasterapp.presentation.LandingFragmentDirections
+import com.myth.ticketmasterapp.presentation.ResultsFragment
 
-class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.EventsViewHolder>() {
+class HomeFragmentAdapter(
+    val eventViewModel: EventViewModel,
+    val resultsFragment: ResultsFragment
+) :
+    RecyclerView.Adapter<HomeFragmentAdapter.EventsViewHolder>() {
 
     class EventsViewHolder(val itemBinding: EventSearchResultsCardLayoutBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+        RecyclerView.ViewHolder(itemBinding.root) {}
 
     private val differCallback = object : DiffUtil.ItemCallback<Event>() {
         override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
@@ -22,7 +31,18 @@ class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.EventsViewH
         }
 
         override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
+                    && oldItem.type == newItem.type
+                    && oldItem.id == newItem.id
+                    && oldItem.url == newItem.url
+                    && oldItem.locale == newItem.locale
+                    && oldItem.images == newItem.images
+                    && oldItem.sales == newItem.sales
+                    && oldItem.dates == newItem.dates
+                    && oldItem.classifications == newItem.classifications
+                    && oldItem.promoters == newItem.promoters
+                    && oldItem.priceRanges == newItem.priceRanges
+                    && oldItem.seatmap == newItem.seatmap
         }
     }
     val differ = AsyncListDiffer(this, differCallback)
@@ -36,14 +56,27 @@ class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.EventsViewH
 
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         val currentEvent = differ.currentList[position]
-
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
-        holder.itemBinding.eventSearchResultDateAndTime.text = currentEvent.dates.start.localDate
+
+        val dates = currentEvent.dates?.start
+        if (dates != null) {
+            holder.itemBinding.eventSearchResultDate.text = dates.localDate
+            holder.itemBinding.eventSearchResultTime.text = dates.localTime
+        } else {
+            holder.itemBinding.eventSearchResultDate.text = "Date TBA"
+            holder.itemBinding.eventSearchResultTime.text = "Time TBA"
+        }
 
 
-        for (venue in currentEvent._embedded.venues) {
-            holder.itemBinding.eventSearchResultVenue.text = venue.name
-            break
+        val classifications = currentEvent.classifications?.get(0)
+        if (classifications != null) {
+            holder.itemBinding.eventSearchResultCategory.text = classifications.segment.name
+        } else {
+            holder.itemBinding.eventSearchResultTime.text = "Category TBA"
+        }
+
+        if (currentEvent._embedded.venues.isNotEmpty()) {
+            holder.itemBinding.eventSearchResultVenue.text = currentEvent._embedded.venues[0].name
         }
 
         for (posters in currentEvent.images) {
@@ -53,12 +86,47 @@ class HomeFragmentAdapter : RecyclerView.Adapter<HomeFragmentAdapter.EventsViewH
             break
         }
 
+        holder.itemBinding.btnAddToFavorite.setOnClickListener {
+            val eventsInfo = currentEvent?.info?.toString()
+            if (eventsInfo != null) {
+                eventViewModel.saveEventToFavorite(currentEvent)
+                    .observe(resultsFragment.viewLifecycleOwner, Observer { })
 
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Added to favorites",
+                    Toast.LENGTH_LONG
+                ).show()
 
+                holder.itemBinding.btnRemoveFromFavorite.visibility = View.VISIBLE
+                holder.itemBinding.btnAddToFavorite.visibility = View.GONE
+            } else {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "This event has missing information",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+        holder.itemBinding.btnRemoveFromFavorite.setOnClickListener {
+            eventViewModel.deleteEventFromFavorite(currentEvent)
+                .observe(resultsFragment.viewLifecycleOwner, Observer { })
+
+            Toast.makeText(
+                holder.itemView.context,
+                "Removed from favorites",
+                Toast.LENGTH_LONG
+            )
+                .show()
+
+            holder.itemBinding.btnAddToFavorite.visibility = View.VISIBLE
+            holder.itemBinding.btnRemoveFromFavorite.visibility = View.GONE
+
+        }
 
         holder.itemView.setOnClickListener {
             val direction =
-                HomeFragmentDirections.actionHomeFragmentToEventInfoFragment(currentEvent)
+                LandingFragmentDirections.actionLandingFragment2ToEventInfoFragment(currentEvent)
             it.findNavController().navigate(direction)
         }
     }

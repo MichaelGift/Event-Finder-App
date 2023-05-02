@@ -3,14 +3,21 @@ package com.myth.ticketmasterapp.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
+import com.myth.ticketmasterapp.presentation.EventViewModel
+import com.myth.ticketmasterapp.presentation.fragments.FavoritesFragment
 
-class FavoritesFragmentAdapter : RecyclerView.Adapter<FavoritesFragmentAdapter.EventsViewHolder>() {
+class FavoritesFragmentAdapter(
+    val eventViewModel: EventViewModel,
+    val favoritesFragment: FavoritesFragment
+) :
+    RecyclerView.Adapter<FavoritesFragmentAdapter.EventsViewHolder>() {
 
     class EventsViewHolder(val itemBinding: EventSearchResultsCardLayoutBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
@@ -37,7 +44,7 @@ class FavoritesFragmentAdapter : RecyclerView.Adapter<FavoritesFragmentAdapter.E
         val currentEvent = differ.currentList[position]
 
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
-        holder.itemBinding.eventSearchResultDateAndTime.text = currentEvent.dates.start.localDate
+        holder.itemBinding.eventSearchResultDate.text = currentEvent.dates.start.localDate
         for (venue in currentEvent._embedded.venues) {
             holder.itemBinding.eventSearchResultVenue.text = venue.name
             break
@@ -52,8 +59,12 @@ class FavoritesFragmentAdapter : RecyclerView.Adapter<FavoritesFragmentAdapter.E
         }
 
         holder.itemView.setOnClickListener {
+            eventViewModel.deleteEventFromFavorite(currentEvent)
+                .observe(favoritesFragment.viewLifecycleOwner,
+                    Observer { })
+            favoritesFragment.getEventsList()
             Toast.makeText(
-                holder.itemView.context, "Clicked", Toast.LENGTH_SHORT
+                holder.itemView.context, "Removed from favorites", Toast.LENGTH_SHORT
             ).show()
         }
     }

@@ -1,15 +1,12 @@
 package com.myth.ticketmasterapp.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.data.spotifydatamodels.AccessTokenResponse
 import com.myth.ticketmasterapp.domain.usecases.DeleteEventUseCase
 import com.myth.ticketmasterapp.domain.usecases.GetEventUseCase
 import com.myth.ticketmasterapp.domain.usecases.GetSpotifyDataUseCase
 import com.myth.ticketmasterapp.domain.usecases.SaveEventUseCase
-import kotlinx.coroutines.launch
 import retrofit2.Call
 
 class EventViewModel(
@@ -23,6 +20,14 @@ class EventViewModel(
 
     lateinit var chosenEvent: Event
 
+    /*lateinit var homeFragmentAdapter: HomeFragmentAdapter*/
+
+    var _listEvents = MutableLiveData<List<Event>?>()
+    val listEvents: LiveData<List<Event>?> = MediatorLiveData<List<Event>?>().apply {
+        addSource(_listEvents) { value = it }
+    }
+
+
     fun getEvent(
         keyword: String,
         distance: String,
@@ -30,20 +35,26 @@ class EventViewModel(
         location: String
     ) = liveData {
         val eventList = getEventUseCase.execute(keyword, distance, category, location)
+        _listEvents.value = eventList/*
+        println("You have the following number of events ${listEvents.value?.size}")*/
         emit(eventList)
     }
 
-    fun saveEventToFavorite(event: Event) = viewModelScope.launch {
-        saveEventUseCase.execute(event)
+    fun saveEventToFavorite(event: Event) = liveData {
+        val savedEvent = saveEventUseCase.execute(event)
+        emit(savedEvent)
     }
 
-    fun deleteEventFromFavorite(event: Event) = viewModelScope.launch {
-        deleteEventUseCase.execute(event)
+    fun deleteEventFromFavorite(event: Event) = liveData {
+        val deletedEvent = deleteEventUseCase.execute(event)
+        emit(deletedEvent)
     }
 
-    fun getEventId(eventId: String) = viewModelScope.launch {
-        getEventUseCase.getEventById(eventId)
+    fun getEventId(eventId: String) = liveData {
+        val matchingEvents = getEventUseCase.getEventById(eventId)
+        emit(matchingEvents)
     }
+
 
     fun getFavoriteEvents() = liveData {
         val eventsList = getEventUseCase.getEventsFromDB()

@@ -7,4 +7,14 @@
         android:icon="@drawable/ic_favorite"
         android:title="Favorites"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/twitterIcon"
+        android:icon="@drawable/ic_favorite"
+        android:title="Facebook"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/facebookIcon"
+        android:icon="@drawable/ic_favorite"
+        android:title="Facebook"
+        app:showAsAction="always" />
 </menu>
