@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         (application as Injector).createEventSubComponent().inject(this)
         eventViewModel = ViewModelProvider(this, factory)[EventViewModel::class.java]
 
-        val clientId = "7fdd006b6650427b803f093a9a32d629"
-        val clientSecret = "18fb2aae194f4d5ea6aa95a6d5006e07"
+        val clientId = "(Insert Spotify Client Id)"
+        val clientSecret = "(Insert Spotify Client Secret)"
 
         val authHeader = "Basic " + Base64.encodeToString(
             "$clientId:$clientSecret".toByteArray(),
