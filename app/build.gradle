@@ -18,7 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "API_KEY", "\"W7psM49cpGBx65Cj33IuuowuGYZYdZya\""
+        buildConfigField "String", "API_KEY", "\"(Insert ticket Master API Keys)\""
         buildConfigField "String", "BASE_URL", "\"https://app.ticketmaster.com/discovery/v2/\""
         buildConfigField "String", "SPOTIFY_BASE_URL", "\"https://api.spotify.com/v1/\""
         buildConfigField "String", "SPOTIFY_TOKEN_ACCESS_URL", "\"https://accounts.spotify.com/api/\""
