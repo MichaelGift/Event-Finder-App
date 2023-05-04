@@ -3,6 +3,7 @@
 - Add events to favorites
 - Share to Facebook and Twitter
 - Get artist spotify data
+- Search events by category
 
 ## Coming soon
 - Notification on offers
