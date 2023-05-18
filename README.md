@@ -11,5 +11,6 @@
 
 ## How to run
 ---
-- Clone and Build
-
+- Clone
+- Add your API keys
+- Build
