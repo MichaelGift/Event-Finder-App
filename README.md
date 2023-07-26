@@ -1,16 +1,46 @@
-# TicketMasterApp
-- Get a listing of events happening all around the world.
-- Add events to favorites
-- Share to Facebook and Twitter
-- Get artist spotify data
-- Search events by category
+# Event Finder App - TicketMasterApp
+## Introduction
+Welcome to TicketMasterApp, your go-to app for discovering events happening all around the world. Whether it's concerts, sports events, theater shows, or any other entertainment, this app will keep you informed and engaged. TicketMasterApp utilizes the power of the TicketMaster API and Google Maps API to provide you with up-to-date event listings and venue details.
 
-## Coming soon
-- Notification on offers
+## Features
+- **Explore Events:**
+  Browse through a comprehensive listing of events taking place globally.
+- **Favorite Events:**
+  Mark events as favorites to easily access them later.
+- **Social Sharing:**
+  Share your favorite events with your friends on Facebook and Twitter.
+- **Artist Spotify Data:**
+  Discover more about event artists with integrated Spotify data.
+- **Category Search:**
+  Filter events by specific categories such as music, sports, arts, and more.
 
 
-## How to run
----
-- Clone
-- Add your API keys
-- Build
+## Coming Soon
+- **Offer Notifications:**
+Receive notifications about special offers and promotions for selected events.
+
+## How to Run
+Follow these steps to get TicketMasterApp up and running on your local machine
+
+1. Clone the Repo
+```Bash
+git clone https://github.com/MichaelGift/TicketMasterApp.git
+```
+2. Add API Keys:
+   - Obtain your API keys for the TicketMaster and Google Maps
+3. Build and run
+   - Open the project in Android Studio
+   - Build the project to ensure all dependencies are synced
+   - Connect your Android Device to the computer or use an emulator
+   - Run
+## API LIBRARY USED
+TicketMasterApp relies on the following APIs to provide its functionality:
+
+ - **TicketMaster API:**
+   For fetching event data from around the world.
+ - **Google Maps API:**
+   To display event venues and provide location-based services.
+
+## Contibuting
+Contributions are welcome to enhance TicketMasterApp experience. If you have any suggestions, bug fixes, or new features to add, please fork the repository, make your changes, and create a pull request.
+
