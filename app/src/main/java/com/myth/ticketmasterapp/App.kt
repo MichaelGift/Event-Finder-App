@@ -3,7 +3,9 @@ package com.myth.ticketmasterapp
 import android.app.Application
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.di.*
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application(), Injector {
     private lateinit var appComponent: AppComponent
     private lateinit var eventViewModel: EventViewModel
