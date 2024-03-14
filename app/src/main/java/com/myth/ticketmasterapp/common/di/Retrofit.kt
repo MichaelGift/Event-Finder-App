@@ -7,11 +7,15 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object Retrofit {
+    @Singleton
     @Provides
+    @Named("ticketMaster")
     fun provideTicketMasterRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -19,7 +23,9 @@ object Retrofit {
             .build()
     }
 
+    @Singleton
     @Provides
+    @Named("spotify")
     fun providesSpotifyRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -27,7 +33,9 @@ object Retrofit {
             .build()
     }
 
+    @Singleton
     @Provides
+    @Named("SpotifyAuth")
     fun providesSpotifyAuthRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
