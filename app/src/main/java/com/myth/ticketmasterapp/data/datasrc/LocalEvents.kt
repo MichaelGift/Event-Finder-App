@@ -1,9 +1,8 @@
-package com.myth.ticketmasterapp.data.datasource
+package com.myth.ticketmasterapp.data.datasrc
 
-import androidx.lifecycle.LiveData
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 
-interface EventLocalDataSource {
+interface LocalEvents {
 
     suspend fun getEventsFromDB(): List<Event>
     suspend fun saveEventToDB(events:Event)
