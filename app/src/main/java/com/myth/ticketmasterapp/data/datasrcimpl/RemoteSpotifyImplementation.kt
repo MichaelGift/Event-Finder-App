@@ -1,17 +1,17 @@
-package com.myth.ticketmasterapp.data.datasourceimplementation
+package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.api.SpotifyAuthService
 import com.myth.ticketmasterapp.data.api.SpotifyService
-import com.myth.ticketmasterapp.data.datasource.SpotifyRemoteDataSource
+import com.myth.ticketmasterapp.data.datasrc.RemoteSpotify
 import com.myth.ticketmasterapp.data.spotifydatamodels.AccessTokenResponse
 import com.myth.ticketmasterapp.data.spotifydatamodels.SpotifyData
 import retrofit2.Call
 import retrofit2.Response
 
-class SpotifyRemoteDataSourceImplementation(
+class RemoteSpotifyImplementation(
     private val spotifyService: SpotifyService,
     private val spotifyAuthService: SpotifyAuthService,
-) : SpotifyRemoteDataSource {
+) : RemoteSpotify {
     override suspend fun getSpotifyData(authorizationToken: String, artist: String): Response<SpotifyData> =
         spotifyService.getArtist(authorizationToken, artist)
 

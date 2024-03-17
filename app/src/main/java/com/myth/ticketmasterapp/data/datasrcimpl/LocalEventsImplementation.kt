@@ -1,16 +1,15 @@
-package com.myth.ticketmasterapp.data.datasourceimplementation
+package com.myth.ticketmasterapp.data.datasrcimpl
 
-import androidx.lifecycle.LiveData
-import com.myth.ticketmasterapp.data.datasource.EventLocalDataSource
+import com.myth.ticketmasterapp.data.datasrc.LocalEvents
 import com.myth.ticketmasterapp.data.db.EventDao
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class EventLocalDataSourceImplementation(
+class LocalEventsImplementation(
     private val eventDao: EventDao
-) : EventLocalDataSource {
+) : LocalEvents {
     override suspend fun getEventsFromDB(): List<Event> {
         return eventDao.getEvents()
     }

@@ -1,14 +1,14 @@
-package com.myth.ticketmasterapp.data.datasourceimplementation
+package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.api.TicketMasterService
-import com.myth.ticketmasterapp.data.datasource.EventRemoteDataSource
+import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
 import com.myth.ticketmasterapp.data.eventdatamodels.SampleEvent
 import retrofit2.Response
 
-class EventRemoteDataSourceImplementation(
+class RemoteEventsImplementation(
     private val ticketMasterService: TicketMasterService,
     private val apikey: String
-) : EventRemoteDataSource {
+) : RemoteEvents {
     override suspend fun getEvent(
         keyword: String,
         distance: String,
