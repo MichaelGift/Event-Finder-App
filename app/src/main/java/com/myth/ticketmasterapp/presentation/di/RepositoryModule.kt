@@ -1,10 +1,10 @@
 package com.myth.ticketmasterapp.presentation.di
 
 import com.myth.ticketmasterapp.data.EventRepositoryImplementation
-import com.myth.ticketmasterapp.data.datasource.EventCacheDataSource
-import com.myth.ticketmasterapp.data.datasource.EventLocalDataSource
-import com.myth.ticketmasterapp.data.datasource.EventRemoteDataSource
-import com.myth.ticketmasterapp.data.datasource.SpotifyRemoteDataSource
+import com.myth.ticketmasterapp.data.datasrc.CacheEvents
+import com.myth.ticketmasterapp.data.datasrc.LocalEvents
+import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
+import com.myth.ticketmasterapp.data.datasrc.RemoteSpotify
 import com.myth.ticketmasterapp.domain.repository.EventRepository
 import dagger.Module
 import dagger.Provides
@@ -15,16 +15,16 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun providesEventRepository(
-        eventRemoteDataSource: EventRemoteDataSource,
-        eventLocalDataSource: EventLocalDataSource,
-        eventCacheDataSource: EventCacheDataSource,
-        spotifyRemoteDataSource: SpotifyRemoteDataSource
+        remoteEvents: RemoteEvents,
+        localEvents: LocalEvents,
+        cacheEvents: CacheEvents,
+        remoteSpotify: RemoteSpotify
     ): EventRepository {
         return EventRepositoryImplementation(
-            eventRemoteDataSource,
-            eventLocalDataSource,
-            eventCacheDataSource,
-            spotifyRemoteDataSource
+            remoteEvents,
+            localEvents,
+            cacheEvents,
+            remoteSpotify
         )
     }
 }

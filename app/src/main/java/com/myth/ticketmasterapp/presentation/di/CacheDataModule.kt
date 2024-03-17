@@ -1,7 +1,7 @@
 package com.myth.ticketmasterapp.presentation.di
 
-import com.myth.ticketmasterapp.data.datasource.EventCacheDataSource
-import com.myth.ticketmasterapp.data.datasourceimplementation.EventCacheDataSourceImplementation
+import com.myth.ticketmasterapp.data.datasrc.CacheEvents
+import com.myth.ticketmasterapp.data.datasrcimpl.CacheEventsImplementation
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class CacheDataModule {
     @Singleton
     @Provides
-    fun providesEventCacheDataSource(): EventCacheDataSource {
-        return EventCacheDataSourceImplementation()
+    fun providesEventCacheDataSource(): CacheEvents {
+        return CacheEventsImplementation()
     }
 }

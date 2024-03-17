@@ -1,10 +1,10 @@
 package com.myth.ticketmasterapp.data
 
 import android.util.Log
-import com.myth.ticketmasterapp.data.datasource.EventCacheDataSource
-import com.myth.ticketmasterapp.data.datasource.EventLocalDataSource
-import com.myth.ticketmasterapp.data.datasource.EventRemoteDataSource
-import com.myth.ticketmasterapp.data.datasource.SpotifyRemoteDataSource
+import com.myth.ticketmasterapp.data.datasrc.CacheEvents
+import com.myth.ticketmasterapp.data.datasrc.LocalEvents
+import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
+import com.myth.ticketmasterapp.data.datasrc.RemoteSpotify
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.data.spotifydatamodels.AccessTokenResponse
 import com.myth.ticketmasterapp.data.spotifydatamodels.SpotifyData
@@ -12,10 +12,10 @@ import com.myth.ticketmasterapp.domain.repository.EventRepository
 import retrofit2.Call
 
 class EventRepositoryImplementation(
-    private val eventRemoteDataSource: EventRemoteDataSource,
-    private val eventLocalDataSource: EventLocalDataSource,
-    private val eventCacheDataSource: EventCacheDataSource,
-    private val spotifyRemoteDataSource: SpotifyRemoteDataSource
+    private val remoteEvents: RemoteEvents,
+    private val localEvents: LocalEvents,
+    private val cacheEvents: CacheEvents,
+    private val remoteSpotify: RemoteSpotify
 ) : EventRepository {
     override suspend fun getEvent(
         keyword: String,
@@ -27,7 +27,7 @@ class EventRepositoryImplementation(
     }
 
     override suspend fun saveEvent(event: Event) {
-        return eventLocalDataSource.saveEventToDB(event)
+        return localEvents.saveEventToDB(event)
     }
 
     override suspend fun getEventsFromDB(): List<Event>? {
@@ -35,7 +35,7 @@ class EventRepositoryImplementation(
     }
 
     override suspend fun deleteEvent(event: Event) {
-        return eventLocalDataSource.deleteEvent(event)
+        return localEvents.deleteEvent(event)
     }
 
     override suspend fun getSpotifyData(
@@ -44,7 +44,7 @@ class EventRepositoryImplementation(
     ): List<SpotifyData> {
         var spotifyData = arrayListOf<SpotifyData>()
         try {
-            val response = spotifyRemoteDataSource.getSpotifyData(authorization, artistName)
+            val response = remoteSpotify.getSpotifyData(authorization, artistName)
             Log.d(
                 "Spotify API Response",
                 "Response Code : ${response.code()}, message : ${response.message()}"
@@ -70,7 +70,7 @@ class EventRepositoryImplementation(
     override fun getAccessToken(
         authorization: String,
         getToken: String
-    ): Call<AccessTokenResponse> = spotifyRemoteDataSource.getAccessToken(authorization, getToken)
+    ): Call<AccessTokenResponse> = remoteSpotify.getAccessToken(authorization, getToken)
 
 
     private suspend fun getEventsFromAPI(
@@ -82,7 +82,7 @@ class EventRepositoryImplementation(
         var eventsList: List<Event> = emptyList()
 
         try {
-            val response = eventRemoteDataSource.getEvent(keyword, distance, category, location)
+            val response = remoteEvents.getEvent(keyword, distance, category, location)
             Log.d(
                 "API Response",
                 "Response code: ${response.code()}, message: ${response.message()}"
@@ -105,7 +105,7 @@ class EventRepositoryImplementation(
         lateinit var eventsList: List<Event>
 
         try {
-            eventsList = eventLocalDataSource.getEventsFromDB()
+            eventsList = localEvents.getEventsFromDB()
         } catch (_: java.lang.Exception) {
         }
 
@@ -119,7 +119,7 @@ class EventRepositoryImplementation(
         var matchingEvent: List<Event>? = null
         try {
 
-            matchingEvent = eventLocalDataSource.getEventById(eventId)
+            matchingEvent = localEvents.getEventById(eventId)
             println("Got ${matchingEvent?.size}")
         } catch (_: java.lang.Exception) {
         }
@@ -132,7 +132,7 @@ class EventRepositoryImplementation(
         lateinit var eventsList: List<Event>
 
         try {
-            eventsList = eventCacheDataSource.getEventsFromCache()
+            eventsList = cacheEvents.getEventsFromCache()
         } catch (_: java.lang.Exception) {
         }
 
@@ -140,13 +140,13 @@ class EventRepositoryImplementation(
             return eventsList
         } else {
             eventsList = getEventsFromROOM()
-            eventCacheDataSource.saveEventsToCache(eventsList)
+            cacheEvents.saveEventsToCache(eventsList)
         }
         return eventsList
     }
 
     private suspend fun saveEventToRoom(event: Event) {
-        return eventLocalDataSource.saveEventToDB(event)
+        return localEvents.saveEventToDB(event)
     }
 
 }

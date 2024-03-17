@@ -1,9 +1,9 @@
-package com.myth.ticketmasterapp.data.datasourceimplementation
+package com.myth.ticketmasterapp.data.datasrcimpl
 
-import com.myth.ticketmasterapp.data.datasource.EventCacheDataSource
+import com.myth.ticketmasterapp.data.datasrc.CacheEvents
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 
-class EventCacheDataSourceImplementation : EventCacheDataSource {
+class CacheEventsImplementation : CacheEvents {
 
     private var eventsList = ArrayList<Event>()
     override suspend fun getEventsFromCache(): List<Event> {
