@@ -1,6 +1,9 @@
 package com.myth.ticketmasterapp.common.di
 
 import com.myth.ticketmasterapp.BuildConfig
+import com.myth.ticketmasterapp.data.api.SpotifyAuthService
+import com.myth.ticketmasterapp.data.api.SpotifyService
+import com.myth.ticketmasterapp.data.api.TicketMasterService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,11 +38,29 @@ object Retrofit {
 
     @Singleton
     @Provides
-    @Named("SpotifyAuth")
+    @Named("spotifyAuth")
     fun providesSpotifyAuthRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BuildConfig.SPOTIFY_TOKEN_ACCESS_URL)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun providesTicketMasterService(@Named("ticketMaster") retrofit: Retrofit): TicketMasterService {
+        return retrofit.create(TicketMasterService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesSpotifyService(@Named("spotify") retrofit: Retrofit): SpotifyService {
+        return retrofit.create(SpotifyService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesSpotifyAuthService(@Named("spotifyAuth") retrofit: Retrofit): SpotifyAuthService {
+        return retrofit.create(SpotifyAuthService::class.java)
     }
 }
