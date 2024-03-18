@@ -10,14 +10,14 @@ import dagger.Provides
 
 @Module
 class EventModule {
-    @EventScope
-    @Provides
-    fun providesEventViewModelFactory(
-        getEventUseCase: GetEventUseCase,
-        saveEventUseCase: SaveEventUseCase,
-        deleteEventUseCase: DeleteEventUseCase,
-        getSpotifyDataUseCase: GetSpotifyDataUseCase
-    ): ViewModelFactory {
-        return ViewModelFactory(getEventUseCase, saveEventUseCase, deleteEventUseCase, getSpotifyDataUseCase)
-    }
+//    @EventScope
+//    @Provides
+//    fun providesEventViewModelFactory(
+//        getEventUseCase: GetEventUseCase,
+//        saveEventUseCase: SaveEventUseCase,
+//        deleteEventUseCase: DeleteEventUseCase,
+//        getSpotifyDataUseCase: GetSpotifyDataUseCase
+//    ): ViewModelFactory {
+//        return ViewModelFactory(getEventUseCase, saveEventUseCase, deleteEventUseCase, getSpotifyDataUseCase)
+//    }
 }

@@ -13,21 +13,21 @@ import javax.inject.Singleton
 
 @Module
 class RemoteDataModule(private val apiKey: String) {
-    @Singleton
-    @Provides
-    fun providesEventRemoteDataSource(ticketMasterService: TicketMasterService): RemoteEvents {
-        return RemoteEventsImplementation(ticketMasterService, apiKey)
-    }
-
-    @Singleton
-    @Provides
-    fun providesSpotifyRemoteDataSource(
-        spotifyService: SpotifyService,
-        spotifyAuthService: SpotifyAuthService
-    ): RemoteSpotify {
-        return RemoteSpotifyImplementation(
-            spotifyService,
-            spotifyAuthService
-        )
-    }
+//    @Singleton
+//    @Provides
+//    fun providesEventRemoteDataSource(ticketMasterService: TicketMasterService): RemoteEvents {
+//        return RemoteEventsImplementation(ticketMasterService, apiKey)
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun providesSpotifyRemoteDataSource(
+//        spotifyService: SpotifyService,
+//        spotifyAuthService: SpotifyAuthService
+//    ): RemoteSpotify {
+//        return RemoteSpotifyImplementation(
+//            spotifyService,
+//            spotifyAuthService
+//        )
+//    }
 }

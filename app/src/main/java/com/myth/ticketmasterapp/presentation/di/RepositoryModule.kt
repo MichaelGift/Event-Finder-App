@@ -12,19 +12,19 @@ import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
-    @Singleton
-    @Provides
-    fun providesEventRepository(
-        remoteEvents: RemoteEvents,
-        localEvents: LocalEvents,
-        cacheEvents: CacheEvents,
-        remoteSpotify: RemoteSpotify
-    ): EventRepository {
-        return EventRepositoryImplementation(
-            remoteEvents,
-            localEvents,
-            cacheEvents,
-            remoteSpotify
-        )
-    }
+//    @Singleton
+//    @Provides
+//    fun providesEventRepository(
+//        remoteEvents: RemoteEvents,
+//        localEvents: LocalEvents,
+//        cacheEvents: CacheEvents,
+//        remoteSpotify: RemoteSpotify
+//    ): EventRepository {
+//        return EventRepositoryImplementation(
+//            remoteEvents,
+//            localEvents,
+//            cacheEvents,
+//            remoteSpotify
+//        )
+//    }
 }
