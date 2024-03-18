@@ -10,8 +10,9 @@ import com.myth.ticketmasterapp.data.spotifydatamodels.AccessTokenResponse
 import com.myth.ticketmasterapp.data.spotifydatamodels.SpotifyData
 import com.myth.ticketmasterapp.domain.repository.EventRepository
 import retrofit2.Call
+import javax.inject.Inject
 
-class EventRepositoryImplementation(
+class EventRepositoryImplementation @Inject constructor(
     private val remoteEvents: RemoteEvents,
     private val localEvents: LocalEvents,
     private val cacheEvents: CacheEvents,
