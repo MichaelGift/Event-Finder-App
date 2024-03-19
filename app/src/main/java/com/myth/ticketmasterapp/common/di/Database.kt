@@ -17,11 +17,11 @@ object Database {
 
     @Singleton
     @Provides
-    fun providesLocalDatabase(context: Context): RoomDatabase {
-        return Room.databaseBuilder(
+    fun providesLocalDatabase(context: Context)
+        = Room.databaseBuilder(
             context, EventDatabase::class.java, DB_NAME
         ).build()
-    }
+
 
     @Singleton
     @Provides

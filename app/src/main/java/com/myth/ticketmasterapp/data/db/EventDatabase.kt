@@ -22,5 +22,5 @@ import com.myth.ticketmasterapp.data.typeconverters.*
     SeatMapConverter::class,
 )
 abstract class EventDatabase : RoomDatabase() {
-    abstract fun eventDao(): com.myth.ticketmasterapp.data.db.EventDao
+    abstract fun eventDao(): EventDao
 }
