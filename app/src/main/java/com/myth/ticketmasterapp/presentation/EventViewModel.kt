@@ -7,9 +7,12 @@ import com.myth.ticketmasterapp.domain.usecases.DeleteEventUseCase
 import com.myth.ticketmasterapp.domain.usecases.GetEventUseCase
 import com.myth.ticketmasterapp.domain.usecases.GetSpotifyDataUseCase
 import com.myth.ticketmasterapp.domain.usecases.SaveEventUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
+import javax.inject.Inject
 
-class EventViewModel(
+@HiltViewModel
+class EventViewModel @Inject constructor(
     private val getEventUseCase: GetEventUseCase,
     private val saveEventUseCase: SaveEventUseCase,
     private val deleteEventUseCase: DeleteEventUseCase,

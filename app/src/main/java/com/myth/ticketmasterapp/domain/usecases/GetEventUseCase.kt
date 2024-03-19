@@ -1,10 +1,14 @@
 package com.myth.ticketmasterapp.domain.usecases
 
 import androidx.lifecycle.LiveData
+import com.myth.ticketmasterapp.data.EventRepositoryImplementation
 import com.myth.ticketmasterapp.data.eventdatamodels.Event
 import com.myth.ticketmasterapp.domain.repository.EventRepository
+import javax.inject.Inject
 
-class GetEventUseCase(private var eventRepository: EventRepository) {
+class GetEventUseCase @Inject constructor(
+    private var eventRepository: EventRepository
+) {
     suspend fun execute(
         keyword: String,
         distance: String,

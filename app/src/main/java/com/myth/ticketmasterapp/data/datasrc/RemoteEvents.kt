@@ -1,9 +1,9 @@
-package com.myth.ticketmasterapp.data.datasource
+package com.myth.ticketmasterapp.data.datasrc
 
 import com.myth.ticketmasterapp.data.eventdatamodels.SampleEvent
 import retrofit2.Response
 
-interface EventRemoteDataSource {
+interface RemoteEvents {
     suspend fun getEvent(
         keyword: String,
         distance: String,
