@@ -36,7 +36,7 @@ android {
         }
     }
     kotlin {
-        jvmToolchain(18)
+        jvmToolchain(17)
     }
 
     buildFeatures {
@@ -81,13 +81,10 @@ dependencies {
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    //Dagger for DI
-    implementation("com.google.dagger:dagger:2.50")
-    kapt("com.google.dagger:dagger-compiler:2.49")
 
     //Hilt for DI
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
