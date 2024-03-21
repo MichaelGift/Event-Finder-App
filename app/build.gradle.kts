@@ -42,11 +42,15 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        compose = true
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
 }
 
@@ -62,8 +66,17 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //lifecycle
+    //Compose
+    val composeBom = platform("androidx.compose:compose-bom:2024.03.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation("androidx.compose.material3:material3")
 
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    //lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0")
