@@ -23,7 +23,7 @@ class EventInfoFragment : Fragment() {
 
     private lateinit var viewModel: EventViewModel
 
-    private val args: EventInfoFragmentArgs by navArgs()
+//    private val args: EventInfoFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +38,12 @@ class EventInfoFragment : Fragment() {
 
         binding = FragmentEventInfoBinding.inflate(inflater, container, false)
 
-        val eventAdapter = EventInfoViewPagerAdapter(
-            (activity as MainActivity).supportFragmentManager, lifecycle
-        )
+//        val eventAdapter = EventInfoViewPagerAdapter(
+//            (activity as MainActivity).supportFragmentManager, lifecycle
+//        )
 
         binding.apply {
-            viewPager.adapter = eventAdapter
+//            viewPager.adapter = eventAdapter
             val iconset = generateIcons()
 
             TabLayoutMediator(tabViewNav, viewPager) { tab, position ->
@@ -58,7 +58,7 @@ class EventInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentEvent = args.event!!
+//        currentEvent = args.event!!
 
         viewModel = (activity as MainActivity).eventViewModel
 
