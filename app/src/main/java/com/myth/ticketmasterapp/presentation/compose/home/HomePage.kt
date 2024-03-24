@@ -60,7 +60,7 @@ import coil.compose.SubcomposeAsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun homePage() {
+fun HomePage() {
     var searchQuery by remember { mutableStateOf("") }
     var searchState by remember { mutableStateOf(false) }
 
@@ -614,5 +614,5 @@ fun homePage() {
 @Preview
 @Composable
 fun homePagePreview() {
-    homePage()
+    HomePage()
 }
