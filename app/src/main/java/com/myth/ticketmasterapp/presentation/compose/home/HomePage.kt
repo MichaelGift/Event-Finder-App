@@ -1,20 +1,31 @@
 package com.myth.ticketmasterapp.presentation.compose.home
 
+import android.graphics.drawable.Icon
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -34,11 +45,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.SubcomposeAsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,10 +90,10 @@ fun homePage() {
                     }
                 },
                 colors =
-                    TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
-                    ),
+                TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
             )
         },
     ) { padding ->
@@ -85,9 +103,9 @@ fun homePage() {
             // Search Bar
             SearchBar(
                 modifier =
-                    Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth(),
+                Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth(),
                 query = searchQuery,
                 onQueryChange = { searchQuery = it },
                 onSearch = {},
@@ -107,10 +125,10 @@ fun homePage() {
             // Category Chips
             Row(
                 modifier =
-                    Modifier
-                        .padding(start = 8.dp)
-                        .fillMaxWidth()
-                        .horizontalScroll(categoriesScroll),
+                Modifier
+                    .padding(start = 8.dp)
+                    .fillMaxWidth()
+                    .horizontalScroll(categoriesScroll),
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 FilterChip(
@@ -118,119 +136,119 @@ fun homePage() {
                     onClick = { music = !music },
                     label = { Text("Music") },
                     leadingIcon =
-                        if (music) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (music) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = sports,
                     onClick = { sports = !sports },
                     label = { Text("Sports") },
                     leadingIcon =
-                        if (sports) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (sports) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = art,
                     onClick = { art = !art },
                     label = { Text("Art") },
                     leadingIcon =
-                        if (art) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (art) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = theater,
                     onClick = { theater = !theater },
                     label = { Text("Theater") },
                     leadingIcon =
-                        if (theater) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (theater) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = concert,
                     onClick = { concert = !concert },
                     label = { Text("Concert") },
                     leadingIcon =
-                        if (concert) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (concert) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = festival,
                     onClick = { festival = !festival },
                     label = { Text("Festival") },
                     leadingIcon =
-                        if (festival) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (festival) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
                 FilterChip(
                     selected = exhibit,
                     onClick = { exhibit = !exhibit },
                     label = { Text("Exhibit") },
                     leadingIcon =
-                        if (exhibit) {
-                            {
-                                Icon(
-                                    imageVector = Icons.Filled.Done,
-                                    contentDescription = "Done icon",
-                                    modifier = Modifier.size(FilterChipDefaults.IconSize),
-                                )
-                            }
-                        } else {
-                            null
-                        },
+                    if (exhibit) {
+                        {
+                            Icon(
+                                imageVector = Icons.Filled.Done,
+                                contentDescription = "Done icon",
+                                modifier = Modifier.size(FilterChipDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
                 )
             }
 
@@ -238,9 +256,9 @@ fun homePage() {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(start = 8.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -259,89 +277,185 @@ fun homePage() {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(start = 8.dp)
-                        .horizontalScroll(popularScroll),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp)
+                    .horizontalScroll(popularScroll),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Popular Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://ew.com/thmb/xc2Q_hUwLK6BQs5HfvlMAoTgBTY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/taylor-swift-031823-01-2000-5efc5ff678ec42a8abdb1b7b4fd35486.jpg",
+                            contentDescription = "Taylor Swift",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Tyler Swift Eras Tour",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Popular Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://metalinsider.net/site/wp-content/uploads/2022/04/Dragonforce_2022_19.jpg",
+                            contentDescription = "Dragon Force",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Visions of Atlantis",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Popular Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://artistsden.wpenginepowered.com/wp-content/uploads/2019/09/ImagineDragons_317.jpg",
+                            contentDescription = "Imagine Dragons",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Radio Active",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Popular Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://www.gqmiddleeast.com/cloud/2023/11/06/GQ-Features-Image-2023-11-06T112132.867.png",
+                            contentDescription = "Chris Brown",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "The 11:11 Tour",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
             }
 
             // Favorites section
             Row(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(start = 8.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -360,63 +474,135 @@ fun homePage() {
             Spacer(modifier = Modifier.padding(2.dp))
             Row(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(start = 8.dp)
-                        .horizontalScroll(favoritesScroll),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp)
+                    .horizontalScroll(favoritesScroll),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Favorite Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://www.gqmiddleeast.com/cloud/2023/11/06/GQ-Features-Image-2023-11-06T112132.867.png",
+                            contentDescription = "Chris Brown",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "The 11:11 Tour",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Favorite Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://www.gqmiddleeast.com/cloud/2023/11/06/GQ-Features-Image-2023-11-06T112132.867.png",
+                            contentDescription = "Chris Brown",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "The 11:11 Tour",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
                 ElevatedCard(
                     elevation =
-                        CardDefaults.cardElevation(
-                            defaultElevation = 6.dp,
-                        ),
+                    CardDefaults.cardElevation(
+                        defaultElevation = 6.dp,
+                    ),
                     modifier =
-                        Modifier
-                            .size(width = 180.dp, height = 240.dp),
+                    Modifier
+                        .size(width = 180.dp, height = 240.dp),
                 ) {
-                    Text(
-                        text = "Sample Favorite Event",
-                        modifier =
-                            Modifier
-                                .padding(16.dp),
-                        textAlign = TextAlign.Center,
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        SubcomposeAsyncImage(
+                            model = "https://www.gqmiddleeast.com/cloud/2023/11/06/GQ-Features-Image-2023-11-06T112132.867.png",
+                            contentDescription = "Chris Brown",
+                            loading = { CircularProgressIndicator() },
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.BottomCenter)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        listOf(Color.Transparent, Color.Black),
+                                        0f, 600f
+                                    )
+                                ),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "The 11:11 Tour",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color.White,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
+                    }
                 }
             }
             // Popular event section
