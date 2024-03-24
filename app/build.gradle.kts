@@ -22,13 +22,17 @@ android {
         buildConfigField("String", "API_KEY", "\"(Insert ticket Master API Keys)\"")
         buildConfigField("String", "BASE_URL", "\"https://app.ticketmaster.com/discovery/v2/\"")
         buildConfigField("String", "SPOTIFY_BASE_URL", "\"https://api.spotify.com/v1/\"")
-        buildConfigField("String", "SPOTIFY_TOKEN_ACCESS_URL", "\"https://accounts.spotify.com/api/\"")
+        buildConfigField(
+            "String",
+            "SPOTIFY_TOKEN_ACCESS_URL",
+            "\"https://accounts.spotify.com/api/\""
+        )
 
     }
 
     buildTypes {
         release {
-            isMinifyEnabled =false
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -112,6 +116,11 @@ dependencies {
     val navVersion = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+
+    //Coil
+    val coilVersion = "2.6.0"
+    implementation("io.coil-kt:coil-compose:$coilVersion")
 }
 kapt {
     correctErrorTypes = true
