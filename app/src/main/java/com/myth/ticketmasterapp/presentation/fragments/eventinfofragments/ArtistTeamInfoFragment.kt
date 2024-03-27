@@ -34,36 +34,7 @@ class ArtistTeamInfoFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUpRecyclerView()
-
-        for(artistNames in chosenEvent._embedded.attractions){
-            eventViewModel.getSpotifyData(
-                "Bearer ${eventViewModel.accessToken}",
-                artistNames.name
-            ).observe(
-                viewLifecycleOwner
-            ){
-                spotifyData ->
-                eventSpotifyArtistInfoAdapter.differ.submitList(spotifyData)
-                if(spotifyData != null){
-                    updateUI(spotifyData)
-                }
-            }
-        }
-
-        /*eventViewModel.getSpotifyData(
-            "Bearer ${eventViewModel.accessToken}",
-            chosenEvent._embedded.attractions[0].name
-        ).observe(
-            viewLifecycleOwner
-        ) { spotifyData ->
-            eventSpotifyArtistInfoAdapter.differ.submitList(spotifyData)
-
-            if (spotifyData != null) {
-                updateUI(spotifyData)
-            }
-        }*/
     }
 
     private fun updateUI(spotifyData: List<SpotifyData>) {

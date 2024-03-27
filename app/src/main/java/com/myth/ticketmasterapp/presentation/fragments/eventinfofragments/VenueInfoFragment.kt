@@ -30,30 +30,10 @@ class VenueInfoFragment : Fragment() {
         binding.apply {
 
 
-            for (venue in chosenEvent._embedded.venues) {
+            for (venue in chosenEvent.venueData.venues) {
                 eventTitleTxt.text = venue.name
                 eventStadiumNameTxt.text = venue.name
                 eventVenueAddress.text = venue.address.line1
-
-                val venueOpenHours = venue.boxOfficeInfo?.openHoursDetail
-                if (venueOpenHours != null) {
-                    eventVenueOpenHoursTxt.text = venueOpenHours
-                }
-
-                val venuePhoneNumberDetail = venue.boxOfficeInfo?.phoneNumberDetail
-                if (venuePhoneNumberDetail != null) {
-                    eventVenuePhoneNumberTxt.text = venuePhoneNumberDetail
-                }
-
-                val venueGeneralRule = venue.generalInfo?.generalRule
-                if (venueGeneralRule != null) {
-                    eventVenueGeneralRule.text = venueGeneralRule
-                }
-                val venueChildRule = venue.generalInfo?.childRule
-                if (venueChildRule != null) {
-                    eventVenueChildRuleTxt.text = venueChildRule
-                }
-
 
                 btnShowVenueOnMaps.setOnClickListener {
                     val latitude = venue.location.latitude
