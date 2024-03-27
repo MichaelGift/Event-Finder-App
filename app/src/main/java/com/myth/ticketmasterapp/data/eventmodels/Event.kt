@@ -24,7 +24,6 @@ data class Event(
     val promoters: List<Promoter>,
     val sales: Sales,
     val seatmap: Seatmap,
-    val test: Boolean,
     val type: String,
     val url: String
 ) : Parcelable{
