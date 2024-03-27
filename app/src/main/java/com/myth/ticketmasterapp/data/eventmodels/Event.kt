@@ -11,7 +11,6 @@ import kotlinx.parcelize.Parcelize
 data class Event(
     @SerializedName("_embedded")
     val venueData: VenueData,
-    val ageRestrictions: AgeRestrictions,
     val classifications: List<ClassificationX>,
     val dates: Dates,
     @PrimaryKey
@@ -37,7 +36,6 @@ data class Event(
 
         if (id != other.id) return false
         if (venueData != other.venueData) return false
-        if (ageRestrictions != other.ageRestrictions) return false
         if (classifications != other.classifications) return false
         if (dates != other.dates) return false
         if (images != other.images) return false
