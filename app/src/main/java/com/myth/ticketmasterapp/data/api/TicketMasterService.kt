@@ -1,6 +1,6 @@
 package com.myth.ticketmasterapp.data.api
 
-import com.myth.ticketmasterapp.data.eventdatamodels.SampleEvent
+import com.myth.ticketmasterapp.data.eventdatamodels.EventsData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,5 +14,5 @@ interface TicketMasterService {
         @Query("unity") distance: String,
         @Query("classificationName") category: String,
         @Query("geoPoint") location: String
-    ): Response<SampleEvent>
+    ): Response<EventsData>
 }
