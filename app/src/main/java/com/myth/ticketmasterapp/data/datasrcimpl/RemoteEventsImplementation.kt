@@ -2,7 +2,7 @@ package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.api.TicketMasterService
 import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
-import com.myth.ticketmasterapp.data.eventdatamodels.SampleEvent
+import com.myth.ticketmasterapp.data.eventdatamodels.EventsData
 import retrofit2.Response
 
 class RemoteEventsImplementation(
@@ -14,7 +14,7 @@ class RemoteEventsImplementation(
         distance: String,
         category: String,
         location: String
-    ): Response<SampleEvent> =
+    ): Response<EventsData> =
         ticketMasterService.getEventByName(apikey, keyword, distance, category, location)
 
 }
