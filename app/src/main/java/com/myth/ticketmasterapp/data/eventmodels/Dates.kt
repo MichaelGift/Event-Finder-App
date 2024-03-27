@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Dates(
     val spanMultipleDays: Boolean,
-    val start: com.myth.ticketmasterapp.data.eventmodels.Start,
-    val status: com.myth.ticketmasterapp.data.eventmodels.Status,
+    val start: Start,
+    val status: Status,
     val timezone: String
 ):Parcelable
