@@ -11,18 +11,18 @@ import kotlinx.parcelize.Parcelize
 data class Event(
     @SerializedName("_embedded")
     val venueData: VenueData,
-    val classifications: List<ClassificationX>,
+    val classifications: List<Classification>,
     val dates: Dates,
     @PrimaryKey
     val id: String,
-    val images: List<ImageXX>,
+    val posters: List<Posters>,
     val info: String,
     val locale: String,
     val name: String,
     val pleaseNote: String,
     val priceRanges: List<PriceRange>,
     val promoters: List<Promoter>,
-    val sales: Sales,
+    val ticketSales: Sales,
     val seatmap: Seatmap,
     val type: String,
     val url: String
@@ -37,14 +37,14 @@ data class Event(
         if (venueData != other.venueData) return false
         if (classifications != other.classifications) return false
         if (dates != other.dates) return false
-        if (images != other.images) return false
+        if (posters != other.posters) return false
         if (info != other.info) return false
         if (locale != other.locale) return false
         if (name != other.name) return false
         if (pleaseNote != other.pleaseNote) return false
         if (priceRanges != other.priceRanges) return false
         if (promoters != other.promoters) return false
-        if (sales != other.sales) return false
+        if (ticketSales != other.ticketSales) return false
         if (seatmap != other.seatmap) return false
         if (test != other.test) return false
         if (type != other.type) return false
