@@ -45,7 +45,7 @@ class FavoritesFragmentAdapter(
 
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
         holder.itemBinding.eventSearchResultDate.text = currentEvent.dates.start.localDate
-        for (venue in currentEvent._embedded.venues) {
+        for (venue in currentEvent.venueData.venues) {
             holder.itemBinding.eventSearchResultVenue.text = venue.name
             break
         }

@@ -3,12 +3,14 @@ package com.myth.ticketmasterapp.data.eventdatamodels
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "events")
 @Parcelize
 data class Event(
-    val _embedded: EmbeddedX,
+    @SerializedName("_embedded")
+    val venueData: VenueData,
     val ageRestrictions: AgeRestrictions,
     val classifications: List<ClassificationX>,
     val dates: Dates,
@@ -34,7 +36,7 @@ data class Event(
         other as Event
 
         if (id != other.id) return false
-        if (_embedded != other._embedded) return false
+        if (venueData != other.venueData) return false
         if (ageRestrictions != other.ageRestrictions) return false
         if (classifications != other.classifications) return false
         if (dates != other.dates) return false

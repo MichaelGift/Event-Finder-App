@@ -75,8 +75,8 @@ class HomeFragmentAdapter(
             holder.itemBinding.eventSearchResultTime.text = "Category TBA"
         }
 
-        if (currentEvent._embedded.venues.isNotEmpty()) {
-            holder.itemBinding.eventSearchResultVenue.text = currentEvent._embedded.venues[0].name
+        if (currentEvent.venueData.venues.isNotEmpty()) {
+            holder.itemBinding.eventSearchResultVenue.text = currentEvent.venueData.venues[0].name
         }
 
         for (posters in currentEvent.images) {
