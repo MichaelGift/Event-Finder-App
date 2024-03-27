@@ -1,6 +1,6 @@
 package com.myth.ticketmasterapp.data.datasrc
 
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 
 interface LocalEvents {
 

@@ -2,7 +2,7 @@ package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.api.TicketMasterService
 import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
-import com.myth.ticketmasterapp.data.eventdatamodels.EventsData
+import com.myth.ticketmasterapp.data.eventmodels.EventsData
 import retrofit2.Response
 
 class RemoteEventsImplementation(

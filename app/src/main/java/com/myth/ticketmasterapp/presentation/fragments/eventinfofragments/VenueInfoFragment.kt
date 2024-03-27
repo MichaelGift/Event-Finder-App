@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.FragmentVenuInfoBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity

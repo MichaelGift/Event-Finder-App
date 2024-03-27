@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.myth.ticketmasterapp.R
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
-import com.myth.ticketmasterapp.data.eventdatamodels.TabIconData
+import com.myth.ticketmasterapp.data.eventmodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.TabIconData
 import com.myth.ticketmasterapp.databinding.FragmentEventInfoBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity
-import com.myth.ticketmasterapp.presentation.viewpager.EventInfoViewPagerAdapter
 
 class EventInfoFragment : Fragment() {
     private lateinit var binding: FragmentEventInfoBinding

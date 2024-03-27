@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.fragments.FavoritesFragment

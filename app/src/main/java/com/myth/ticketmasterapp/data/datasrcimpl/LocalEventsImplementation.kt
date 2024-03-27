@@ -2,7 +2,7 @@ package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.datasrc.LocalEvents
 import com.myth.ticketmasterapp.data.db.EventDao
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

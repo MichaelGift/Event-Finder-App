@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.FragmentEventDetailsBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity

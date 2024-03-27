@@ -1,8 +1,7 @@
 package com.myth.ticketmasterapp.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 
 @Dao
 interface EventDao {

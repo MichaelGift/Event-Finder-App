@@ -1,7 +1,7 @@
 package com.myth.ticketmasterapp.data.datasrcimpl
 
 import com.myth.ticketmasterapp.data.datasrc.CacheEvents
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 
 class CacheEventsImplementation : CacheEvents {
 

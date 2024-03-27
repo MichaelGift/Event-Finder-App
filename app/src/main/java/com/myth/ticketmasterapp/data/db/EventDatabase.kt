@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.myth.ticketmasterapp.data.typeconverters.*
 
 @Database(
-    entities = [com.myth.ticketmasterapp.data.eventdatamodels.Event::class],
+    entities = [com.myth.ticketmasterapp.data.eventmodels.Event::class],
     version = 1,
     exportSchema = false
 )

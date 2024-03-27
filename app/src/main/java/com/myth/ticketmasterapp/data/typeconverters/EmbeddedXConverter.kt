@@ -2,7 +2,7 @@ package com.myth.ticketmasterapp.data.typeconverters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.myth.ticketmasterapp.data.eventdatamodels.VenueData
+import com.myth.ticketmasterapp.data.eventmodels.VenueData
 
 class EmbeddedXConverter {
     @TypeConverter

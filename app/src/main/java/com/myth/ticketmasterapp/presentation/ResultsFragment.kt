@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.myth.ticketmasterapp.R
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.FragmentResultsBinding
 import com.myth.ticketmasterapp.presentation.adapter.HomeFragmentAdapter
 import com.myth.ticketmasterapp.presentation.fragments.HomeFragment

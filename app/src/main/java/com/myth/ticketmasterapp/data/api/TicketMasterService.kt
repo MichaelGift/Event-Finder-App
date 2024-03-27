@@ -1,6 +1,6 @@
 package com.myth.ticketmasterapp.data.api
 
-import com.myth.ticketmasterapp.data.eventdatamodels.EventsData
+import com.myth.ticketmasterapp.data.eventmodels.EventsData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -20,7 +20,7 @@
         tools:layout="@layout/fragment_event_info">
         <argument
             android:name="event"
-            app:argType="com.myth.ticketmasterapp.data.eventdatamodels.Event"
+            app:argType="com.myth.ticketmasterapp.data.eventmodels.Event"
             app:nullable="true" />
         <action
             android:id="@+id/action_eventInfoFragment_to_landingFragment2"
