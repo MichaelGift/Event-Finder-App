@@ -36,8 +36,8 @@ class HomeFragmentAdapter(
                     && oldItem.id == newItem.id
                     && oldItem.url == newItem.url
                     && oldItem.locale == newItem.locale
-                    && oldItem.images == newItem.images
-                    && oldItem.sales == newItem.sales
+                    && oldItem.posters == newItem.posters
+                    && oldItem.ticketSales == newItem.ticketSales
                     && oldItem.dates == newItem.dates
                     && oldItem.classifications == newItem.classifications
                     && oldItem.promoters == newItem.promoters
@@ -79,7 +79,7 @@ class HomeFragmentAdapter(
             holder.itemBinding.eventSearchResultVenue.text = currentEvent.venueData.venues[0].name
         }
 
-        for (posters in currentEvent.images) {
+        for (posters in currentEvent.posters) {
             val posterUrl = posters.url
             Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
                 .into(holder.itemBinding.eventSearchResultImage)

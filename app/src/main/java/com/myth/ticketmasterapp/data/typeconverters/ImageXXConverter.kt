@@ -4,12 +4,12 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
-import com.myth.ticketmasterapp.data.eventmodels.ImageXX
+import com.myth.ticketmasterapp.data.eventmodels.Posters
 
 class ImageXXConverter {
 
     @TypeConverter
-    fun fromImageXXList(value: List<ImageXX>): String {
+    fun fromImageXXList(value: List<Posters>): String {
         val gson = Gson()
         val jsonArray = JsonArray()
         value.forEach { ImageXX ->
@@ -21,12 +21,12 @@ class ImageXXConverter {
     }
 
     @TypeConverter
-    fun toImageXXList(value: String): List<ImageXX> {
+    fun toImageXXList(value: String): List<Posters> {
         val gson = Gson()
         val jsonArray = JsonParser().parse(value).asJsonArray
-        val imageList = mutableListOf<ImageXX>()
+        val imageList = mutableListOf<Posters>()
         jsonArray.forEach { jsonObject ->
-            imageList.add(gson.fromJson(jsonObject, ImageXX::class.java))
+            imageList.add(gson.fromJson(jsonObject, Posters::class.java))
         }
         return imageList
     }

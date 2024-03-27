@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ImageXX(
+data class Posters(
     val fallback: Boolean,
     val height: Int,
     val ratio: String,

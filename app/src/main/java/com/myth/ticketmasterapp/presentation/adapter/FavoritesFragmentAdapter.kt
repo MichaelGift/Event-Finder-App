@@ -50,8 +50,8 @@ class FavoritesFragmentAdapter(
             break
         }
 
-        for (image in currentEvent.images) {
-            val posterUrl = currentEvent.images[0].url
+        for (image in currentEvent.posters) {
+            val posterUrl = currentEvent.posters[0].url
             Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
                 .into(holder.itemBinding.eventSearchResultImage)
 
