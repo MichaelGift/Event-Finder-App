@@ -11,7 +11,6 @@ import com.myth.ticketmasterapp.data.typeconverters.*
     exportSchema = false
 )
 @TypeConverters(
-    AgeRestrictionsConverter::class,
     ClassificationXListConverter::class,
     DatesConverter::class,
     EmbeddedXConverter::class,
