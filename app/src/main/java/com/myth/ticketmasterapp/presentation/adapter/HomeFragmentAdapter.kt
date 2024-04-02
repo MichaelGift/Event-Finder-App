@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.LandingFragmentDirections
@@ -36,8 +36,8 @@ class HomeFragmentAdapter(
                     && oldItem.id == newItem.id
                     && oldItem.url == newItem.url
                     && oldItem.locale == newItem.locale
-                    && oldItem.images == newItem.images
-                    && oldItem.sales == newItem.sales
+                    && oldItem.posters == newItem.posters
+                    && oldItem.ticketSales == newItem.ticketSales
                     && oldItem.dates == newItem.dates
                     && oldItem.classifications == newItem.classifications
                     && oldItem.promoters == newItem.promoters
@@ -75,11 +75,11 @@ class HomeFragmentAdapter(
             holder.itemBinding.eventSearchResultTime.text = "Category TBA"
         }
 
-        if (currentEvent._embedded.venues.isNotEmpty()) {
-            holder.itemBinding.eventSearchResultVenue.text = currentEvent._embedded.venues[0].name
+        if (currentEvent.venueData.venues.isNotEmpty()) {
+            holder.itemBinding.eventSearchResultVenue.text = currentEvent.venueData.venues[0].name
         }
 
-        for (posters in currentEvent.images) {
+        for (posters in currentEvent.posters) {
             val posterUrl = posters.url
             Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
                 .into(holder.itemBinding.eventSearchResultImage)

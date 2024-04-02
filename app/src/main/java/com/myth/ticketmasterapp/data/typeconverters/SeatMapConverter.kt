@@ -2,7 +2,7 @@ package com.myth.ticketmasterapp.data.typeconverters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.myth.ticketmasterapp.data.eventdatamodels.Seatmap
+import com.myth.ticketmasterapp.data.eventmodels.Seatmap
 
 class SeatMapConverter {
     @TypeConverter

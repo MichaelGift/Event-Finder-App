@@ -20,12 +20,12 @@ class LandingFragment : Fragment() {
         binding = FragmentLandingBinding.inflate(
             inflater, container, false
         )
-        val landingPageAdapter = LandingPageViewPagerAdapter(
-            (activity as MainActivity).supportFragmentManager, lifecycle
-        )
+//        val landingPageAdapter = LandingPageViewPagerAdapter(
+////            (activity as MainActivity).supportFragmentManager, lifecycle
+//        )
 
         binding.apply {
-            viewPager.adapter = landingPageAdapter
+//            viewPager.adapter = landingPageAdapter
             val tabTitle = generateTabTitles()
 
             TabLayoutMediator(tabViewNav, viewPager){tab, position ->

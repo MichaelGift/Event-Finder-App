@@ -5,7 +5,7 @@ import com.myth.ticketmasterapp.data.datasrc.CacheEvents
 import com.myth.ticketmasterapp.data.datasrc.LocalEvents
 import com.myth.ticketmasterapp.data.datasrc.RemoteEvents
 import com.myth.ticketmasterapp.data.datasrc.RemoteSpotify
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.data.spotifydatamodels.AccessTokenResponse
 import com.myth.ticketmasterapp.data.spotifydatamodels.SpotifyData
 import com.myth.ticketmasterapp.domain.repository.EventRepository

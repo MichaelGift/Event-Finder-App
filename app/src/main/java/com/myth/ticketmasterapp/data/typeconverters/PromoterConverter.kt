@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
-import com.myth.ticketmasterapp.data.eventdatamodels.Promoter
+import com.myth.ticketmasterapp.data.eventmodels.Promoter
 
 class PromoterConverter {
     @TypeConverter

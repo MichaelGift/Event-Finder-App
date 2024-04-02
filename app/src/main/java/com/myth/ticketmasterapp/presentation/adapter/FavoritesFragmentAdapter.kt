@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.EventSearchResultsCardLayoutBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.fragments.FavoritesFragment
@@ -45,13 +45,13 @@ class FavoritesFragmentAdapter(
 
         holder.itemBinding.eventSearchResultTitle.text = currentEvent.name
         holder.itemBinding.eventSearchResultDate.text = currentEvent.dates.start.localDate
-        for (venue in currentEvent._embedded.venues) {
+        for (venue in currentEvent.venueData.venues) {
             holder.itemBinding.eventSearchResultVenue.text = venue.name
             break
         }
 
-        for (image in currentEvent.images) {
-            val posterUrl = currentEvent.images[0].url
+        for (image in currentEvent.posters) {
+            val posterUrl = currentEvent.posters[0].url
             Glide.with(holder.itemBinding.eventSearchResultImage.context).load(posterUrl)
                 .into(holder.itemBinding.eventSearchResultImage)
 

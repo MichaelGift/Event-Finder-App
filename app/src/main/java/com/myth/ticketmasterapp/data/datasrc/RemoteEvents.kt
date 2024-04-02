@@ -1,6 +1,6 @@
 package com.myth.ticketmasterapp.data.datasrc
 
-import com.myth.ticketmasterapp.data.eventdatamodels.SampleEvent
+import com.myth.ticketmasterapp.data.eventmodels.EventsData
 import retrofit2.Response
 
 interface RemoteEvents {
@@ -9,6 +9,6 @@ interface RemoteEvents {
         distance: String,
         category: String,
         location: String
-    ): Response<SampleEvent>
+    ): Response<EventsData>
 
 }

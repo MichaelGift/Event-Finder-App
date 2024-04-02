@@ -2,16 +2,16 @@ package com.myth.ticketmasterapp.data.typeconverters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.myth.ticketmasterapp.data.eventdatamodels.EmbeddedX
+import com.myth.ticketmasterapp.data.eventmodels.VenueData
 
 class EmbeddedXConverter {
     @TypeConverter
-    fun fromEmbeddedX(value: EmbeddedX): String {
+    fun fromEmbeddedX(value: VenueData): String {
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun toEmbeddedX(value: String): EmbeddedX {
-        return Gson().fromJson(value, EmbeddedX::class.java)
+    fun toEmbeddedX(value: String): VenueData {
+        return Gson().fromJson(value, VenueData::class.java)
     }
 }

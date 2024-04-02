@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.myth.ticketmasterapp.R
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
-import com.myth.ticketmasterapp.data.eventdatamodels.TabIconData
+import com.myth.ticketmasterapp.data.eventmodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.TabIconData
 import com.myth.ticketmasterapp.databinding.FragmentEventInfoBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity
-import com.myth.ticketmasterapp.presentation.viewpager.EventInfoViewPagerAdapter
 
 class EventInfoFragment : Fragment() {
     private lateinit var binding: FragmentEventInfoBinding
@@ -23,7 +21,7 @@ class EventInfoFragment : Fragment() {
 
     private lateinit var viewModel: EventViewModel
 
-    private val args: EventInfoFragmentArgs by navArgs()
+//    private val args: EventInfoFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +36,12 @@ class EventInfoFragment : Fragment() {
 
         binding = FragmentEventInfoBinding.inflate(inflater, container, false)
 
-        val eventAdapter = EventInfoViewPagerAdapter(
-            (activity as MainActivity).supportFragmentManager, lifecycle
-        )
+//        val eventAdapter = EventInfoViewPagerAdapter(
+//            (activity as MainActivity).supportFragmentManager, lifecycle
+//        )
 
         binding.apply {
-            viewPager.adapter = eventAdapter
+//            viewPager.adapter = eventAdapter
             val iconset = generateIcons()
 
             TabLayoutMediator(tabViewNav, viewPager) { tab, position ->
@@ -58,7 +56,7 @@ class EventInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentEvent = args.event!!
+//        currentEvent = args.event!!
 
         viewModel = (activity as MainActivity).eventViewModel
 

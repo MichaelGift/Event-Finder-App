@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.myth.ticketmasterapp.data.eventdatamodels.Event
+import com.myth.ticketmasterapp.data.eventmodels.Event
 import com.myth.ticketmasterapp.databinding.FragmentEventDetailsBinding
 import com.myth.ticketmasterapp.presentation.EventViewModel
 import com.myth.ticketmasterapp.presentation.MainActivity
@@ -34,13 +34,8 @@ class EventDetailsFragment : Fragment() {
             eventTitleText.text = chosenEvent.name
             eventDateText.text = chosenEvent.dates.start.localDate
 
-            val artistName = chosenEvent._embedded.attractions?.get(0)?.name
 
-            if (artistName != null) {
-                eventArtistText.text = artistName
-            }
-
-            for (venueName in chosenEvent._embedded.venues) {
+            for (venueName in chosenEvent.venueData.venues) {
                 eventVenueTxt.text = venueName.name
                 break
             }
@@ -54,7 +49,7 @@ class EventDetailsFragment : Fragment() {
 
             if (priceRanges != null) {
                 for (prices in priceRanges) {
-                    eventPriceRangeTxt.text = "${prices.min} -${prices.max}"
+                    "${prices.min} -${prices.max}".also { eventPriceRangeTxt.text = it }
                     break
                 }
             }
