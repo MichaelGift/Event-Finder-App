@@ -1,7 +1,9 @@
 # Event Finder App - TicketMasterApp
-<img src= "https://github.com/user-attachments/assets/c406e991-3bd6-478d-83b1-e6f8a17e5083" width='33%'>
-<img src= "https://github.com/user-attachments/assets/be87fa22-cdac-44eb-bff5-1ea09d110344" width='33%'>
-<img src="https://github.com/user-attachments/assets/5cb560de-4739-43eb-97d7-887dd7b5533b" width='33%'>
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/c406e991-3bd6-478d-83b1-e6f8a17e5083" width="33%">
+  <img src="https://github.com/user-attachments/assets/be87fa22-cdac-44eb-bff5-1ea09d110344" width="33%">
+  <img src="https://github.com/user-attachments/assets/5cb560de-4739-43eb-97d7-887dd7b5533b" width="33%">
+</div>
 
 ## Introduction
 Welcome to TicketMasterApp, your go-to app for discovering events happening all around the world. Whether it's concerts, sports events, theater shows, or any other entertainment, this app will keep you informed and engaged. TicketMasterApp utilizes the power of the TicketMaster API and Google Maps API to provide you with up-to-date event listings and venue details.
