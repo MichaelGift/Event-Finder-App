@@ -1,8 +1,8 @@
 # Event Finder App - TicketMasterApp
-<div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/user-attachments/assets/c406e991-3bd6-478d-83b1-e6f8a17e5083">
-  <img src="https://github.com/user-attachments/assets/be87fa22-cdac-44eb-bff5-1ea09d110344">
-  <img src="https://github.com/user-attachments/assets/5cb560de-4739-43eb-97d7-887dd7b5533b">
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/c406e991-3bd6-478d-83b1-e6f8a17e5083" width="30%">
+  <img src="https://github.com/user-attachments/assets/be87fa22-cdac-44eb-bff5-1ea09d110344" width="30%">
+  <img src="https://github.com/user-attachments/assets/5cb560de-4739-43eb-97d7-887dd7b5533b" width="30%">
 </div>
 
 ## Introduction
